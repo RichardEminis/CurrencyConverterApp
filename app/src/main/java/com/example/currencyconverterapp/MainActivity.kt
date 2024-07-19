@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupUI() {
         val currencies = listOf("USD", "EUR", "GBP")
         val adapter = ArrayAdapter(this, R.layout.simple_spinner_item, currencies)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
 
         binding.inputCurrencySpinner.adapter = adapter
         binding.resultCurrencySpinner.adapter = adapter

@@ -1,7 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
@@ -37,16 +38,15 @@ android {
 
     buildFeatures {
         viewBinding = true
-        //noinspection DataBindingWithoutKapt
-        dataBinding = true
     }
 }
 
 dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-    implementation(libs.retrofit2.converter.gson)
     implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+    implementation(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
