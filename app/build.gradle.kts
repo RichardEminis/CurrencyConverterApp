@@ -42,6 +42,10 @@ android {
 }
 
 dependencies {
+    implementation (libs.retrofit2.converter.gson)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.retrofit)
