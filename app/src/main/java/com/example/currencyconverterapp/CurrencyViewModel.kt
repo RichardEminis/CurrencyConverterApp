@@ -31,8 +31,7 @@ class CurrencyViewModel @Inject constructor(
                 }
 
             } catch (e: Exception) {
-                _convertedAmount.value =
-                    convertedAmount.value?.copy(convertedAmount = null)
+                _convertedAmount.value = convertedAmount.value?.copy(convertedAmount = null)
             }
         }
     }
