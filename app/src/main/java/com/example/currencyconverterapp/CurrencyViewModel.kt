@@ -18,15 +18,21 @@ class CurrencyViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _convertedAmount = MutableLiveData(CurrencyState())
-    private val convertedAmount: LiveData<CurrencyState>
+    val convertedAmount: LiveData<CurrencyState>
         get() = _convertedAmount
 
-    fun convertCurrency(amount: Double, input: String, result: String) {
+    fun convertCurrency(amount: Double, base: String, target: String) {
         viewModelScope.launch {
-            val rate = repository.getRates(input).rates[result]
-            if (rate != null) {
+            try {
+                val rate = repository.getRates(base).rates[target]
+                if (rate != null) {
+                    _convertedAmount.value =
+                        convertedAmount.value?.copy(convertedAmount = amount * rate)
+                }
+
+            } catch (e: Exception) {
                 _convertedAmount.value =
-                    convertedAmount.value?.copy(convertedAmount = amount * rate)
+                    convertedAmount.value?.copy(convertedAmount = null)
             }
         }
     }

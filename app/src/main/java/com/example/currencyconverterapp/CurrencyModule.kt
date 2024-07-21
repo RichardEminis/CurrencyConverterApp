@@ -23,7 +23,7 @@ class CurrencyModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.exchangeratesapi.io/")
+            .baseUrl("https://v6.exchangerate-api.com/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

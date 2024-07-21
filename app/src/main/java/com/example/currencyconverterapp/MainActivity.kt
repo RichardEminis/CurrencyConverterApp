@@ -1,7 +1,5 @@
 package com.example.currencyconverterapp
 
-//noinspection SuspiciousImport
-import android.R
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
@@ -25,23 +23,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupUI()
+
+        viewModel.convertedAmount.observe(this) { convertedAmount ->
+            binding.resultTextView.text = convertedAmount?.convertedAmount?.toString() ?: ""
+        }
     }
 
     private fun setupUI() {
-        val currencies = listOf("USD", "EUR", "GBP")
-        val adapter = ArrayAdapter(this, R.layout.simple_spinner_item, currencies)
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+        val currencies = listOf("USD", "EUR", "RUB")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, currencies)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         binding.inputCurrencySpinner.adapter = adapter
         binding.resultCurrencySpinner.adapter = adapter
 
         binding.convertButton.setOnClickListener {
             val amount = binding.amountEditText.text.toString().toDoubleOrNull()
-            val input = binding.inputCurrencySpinner.selectedItem.toString()
-            val result = binding.resultCurrencySpinner.selectedItem.toString()
+            val baseCurrency = binding.inputCurrencySpinner.selectedItem.toString()
+            val targetCurrency = binding.resultCurrencySpinner.selectedItem.toString()
 
             if (amount != null) {
-                viewModel.convertCurrency(amount, input, result)
+                viewModel.convertCurrency(amount, baseCurrency, targetCurrency)
             }
         }
     }

@@ -1,7 +1,7 @@
 package com.example.currencyconverterapp
 
+import com.google.gson.annotations.SerializedName
+
 data class CurrencyRates(
-    val rates: Map<String, Double>,
-    val base: String,
-    val date: String
+    @SerializedName("conversion_rates") val rates: Map<String, Double>
 )
