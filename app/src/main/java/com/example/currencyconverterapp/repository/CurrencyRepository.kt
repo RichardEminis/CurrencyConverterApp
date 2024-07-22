@@ -1,9 +1,10 @@
-package com.example.currencyconverterapp
+package com.example.currencyconverterapp.repository
 
+import com.example.currencyconverterapp.network.CurrencyApiService
+import com.example.currencyconverterapp.model.CurrencyRates
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import javax.inject.Singleton
 import kotlin.coroutines.CoroutineContext
 
 class CurrencyRepository @Inject constructor(private val apiService: CurrencyApiService) {
