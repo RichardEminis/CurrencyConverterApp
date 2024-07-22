@@ -1,10 +1,11 @@
-package com.example.currencyconverterapp
+package com.example.currencyconverterapp.ui
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.currencyconverterapp.databinding.ActivityMainBinding
+import com.example.currencyconverterapp.utils.CURRENCIES
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,8 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        val currencies = listOf("USD", "EUR", "RUB")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, currencies)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, CURRENCIES)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         binding.inputCurrencySpinner.adapter = adapter
